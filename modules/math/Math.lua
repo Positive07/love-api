@@ -4,75 +4,7 @@ local path = (...):match('(.-)[^%./]+$')
 return {
     name = 'math',
     description = 'Provides system-independent mathematical functions.',
-    types = {
-        require(path .. 'types.BezierCurve'),
-        require(path .. 'types.CompressedData'),
-        require(path .. 'types.RandomGenerator'),
-        require(path .. 'types.Transform')
-    },
     functions = {
-        {
-            name = 'compress',
-            description = 'Compresses a string or data using a specific compression algorithm.',
-            variants = {
-                {
-                    arguments = {
-                        {
-                            type = 'string',
-                            name = 'rawstring',
-                            description = 'The raw (un-compressed) string to compress.'
-                        },
-                        {
-                            type = 'CompressedDataFormat',
-                            name = 'format',
-                            default = '"lz4"',
-                            description = 'The format to use when compressing the string.'
-                        },
-                        {
-                            type = 'number',
-                            name = 'level',
-                            default = '-1',
-                            description = 'The level of compression to use, between 0 and 9. -1 indicates the default level. The meaning of this argument depends on the compression format being used.'
-                        }
-                    },
-                    returns = {
-                        {
-                            type = 'CompressedData',
-                            name = 'compressedData',
-                            description = 'A new Data object containing the compressed version of the string.'
-                        }
-                    }
-                },
-                {
-                    arguments = {
-                        {
-                            type = 'Data',
-                            name = 'data',
-                            description = 'A Data object containing the raw (un-compressed) data to compress.'
-                        },
-                        {
-                            type = 'CompressedDataFormat',
-                            name = 'format',
-                            default = '"lz4"',
-                            description = 'The format to use when compressing the data.'
-                        },
-                        {
-                            type = 'number',
-                            name = 'level',
-                            default = '-1',
-                            description = 'The level of compression to use, between 0 and 9. -1 indicates the default level. The meaning of this argument depends on the compression format being used.'
-                        }
-                    },
-                    returns = {
-                        {
-                            type = 'CompressedData',
-                            name = 'compressedData',
-                            description = 'A new Data object containing the compressed version of the raw data.'
-                        }
-                    }
-                }
-            }
-        },
         {
             name = 'decompress',
             description = 'Decompresses a CompressedData or previously compressed string or Data object.',
@@ -909,8 +841,14 @@ return {
             }
         }
     },
+    types = {
+        require(path .. 'types.BezierCurve'),
+        -- require(path .. 'types.CompressedData'),
+        require(path .. 'types.RandomGenerator'),
+        require(path .. 'types.Transform')
+    },
     enums = {
-        require(path .. 'enums.CompressedDataFormat'),
+        -- require(path .. 'enums.CompressedDataFormat'),
         require(path .. 'enums.MatrixLayout')
     }
 }
